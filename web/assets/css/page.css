@@ -1,0 +1,65 @@
+ /* 分页样式定义 */
+
+.table-page-box{
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  border-top: 1px solid #efefef;
+  background: #fff;
+}
+.table-page-box > ol{
+    float: right;
+    height: 34px;
+    margin: 13px 15px 0px 0;
+}
+.table-page-box > ol > li{
+  float: left;
+    height: 34px;
+  line-height: 34px;
+}
+.table-page-box > ol > li a , .table-page-box > ol > li span{
+  display: inline-block;
+  text-align: center;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.table-page-box > ol > li a.page-button{
+    border: 1px solid #e8ebec;
+    background: #fff;
+}
+.table-page-box > ol > li a.page-button:first-child{
+  margin-left: 0px;
+}
+.table-page-box > ol > li a:hover {
+  text-decoration: none;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.table-page-box > ol > li span.current ,
+.table-page-box > ol > li span.current:hover{
+    background: #337ab7;
+    color: #fff;
+}
+.table-page-box > ol > li.page-prev{
+  padding-left: 1px;
+}
+.table-page-box > ol > li.page-prev span.current ,
+ .table-page-box > ol > li.page-next span.current{
+  border: 1px solid  #ddd;
+  color: #777;
+  background: #fff;
+  cursor: not-allowed;
+}
+ .table-page-box .page-info{
+  float: left;
+  margin-top: 13px;
+  height: 34x;
+  line-height: 34px;
+  padding:0px 0px 0px 15px;
+} 
+

@@ -1,0 +1,46 @@
+﻿<%
+  for(var i=0;i<rows.length;i++){
+    var itemObj = rows[i];
+    var runFreqName="";
+    for(var j=0;j<runFreq.length;j++){
+        if(runFreq[j]['key'] == itemObj["runFreq"]){
+            runFreqName = runFreq[j]['name'];
+            break;
+        }
+    }
+%>
+ <tr jobId="<%= itemObj["jobId"]%>" dateArgs="<%= itemObj["dateArgs"]%>" 
+  taskState="<%= itemObj["taskState"]%>">
+  
+   <td>
+     <%= itemObj["jobId"]%>
+   </td>    
+   <td>
+     <%= itemObj["jobName"]%>
+   </td>    
+    <td>
+     <%= runFreqName %>
+   </td>     
+   <td>
+     <%= itemObj["dateArgs"]%>
+   </td>  
+   <td>
+     <span class="task-state">
+       <%= itemObj["taskState"]%>
+     </span>
+   </td> 
+   <td>
+     <%= itemObj["agentCode"]%>
+   </td>   
+   <td>
+     <%= itemObj["execTime"]%>
+   </td>    
+   <td>
+     <%= itemObj["endTime"]%>
+   </td> 
+   <td>
+     <%= itemObj["useTime"]%>
+   </td>
+  
+ </tr>
+<% } %>

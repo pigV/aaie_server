@@ -1,0 +1,56 @@
+/*  */
+.quantity-box{
+	overflow:hidden;
+	padding-top: 20px;
+}
+
+.quantity-box li {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    height: 110px;
+    margin-right: 10px;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+.quantity-box li.quantity-blue {
+    background: #00c0ef url(../../images/icon_number.png) no-repeat 220px 16px;
+}
+.quantity-box li.quantity-green {
+    background: #00a65a url(../../images/icon_number.png) no-repeat 220px -125px;
+}
+.quantity-box li.quantity-orange {
+    background: #f39c12 url(../../images/icon_number.png) no-repeat 220px -265px;
+}
+.quantity-box dl{
+	margin-top: 16px;
+	margin-bottom: 18px;
+	margin-left: 20px;
+}
+.quantity-box dl dt{
+	
+}
+.quantity-box dl dd{
+	font-size: 40px;
+    font-weight: bold;
+}
+.quantity-details {
+    position: relative;
+    top: 0;
+	height: 25px;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+}
+.quantity-box li:after {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: transparent url(../../images/icon_list.png) no-repeat 0px 0px;
+    background-position: 0 -117px;
+}
+

@@ -1,0 +1,33 @@
+﻿<%
+  for(var i=0;i<rows.length;i++){
+    var itemObj = rows[i];
+   
+    
+%>
+
+
+ <tr jobId="<%= itemObj["jobId"]%>">
+  
+   <td>
+     <%= itemObj["becauseM"]%>
+   </td>    
+   <td>
+     <%= itemObj["interfaceNum"]%>
+   </td>    
+    <td>
+      <%= itemObj["interfaceType"]%>
+   </td>     
+   <td>
+     <%= itemObj["mDay"]%>
+   </td>  
+   <td>
+     <span class="task-state">
+       <%= itemObj["opTime"]%>
+     </span>
+   </td> 
+   <td>
+     <%= itemObj["tDay"]%>
+   </td>
+  
+ </tr>
+<% } %>

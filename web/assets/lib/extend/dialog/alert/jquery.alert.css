@@ -1,0 +1,49 @@
+.alert-content {
+	width: 100%;
+	height: auto;
+	overflow: hidden !important;
+}
+.alert-content>span {
+	float: left;
+}
+.alert-icon {
+	height: 64px;
+	width: 80px;
+	margin: 0 -100% 0 0 ;
+}
+.alert-text {
+	width: auto;	
+	margin:  0 0 0 80px;
+	padding: 10px 0 0;
+}
+.alert-text-inner{
+	line-height: 36px;
+	text-align: left;
+	font-size: 26px;
+	word-wrap: break-word; /*支持IE，chrome，FF*/
+	word-break: break-all; /*支持IE，chrome，FF不支持*/
+}
+.alert-text-success {
+	color: #78a300;
+}
+.alert-success {
+	background: url(./images/icon_app.png) no-repeat 20px 15px;
+}
+.alert-text-info {
+	color: #333;
+}
+.alert-info {
+	background: url(./images/icon_app.png) no-repeat -236px 15px;
+}
+.alert-text-failed {
+	color: #B00;
+}
+.alert-failed {
+	background: url(./images/icon_app.png) no-repeat -1090px -100px;
+}
+.alert-text-warnning {
+	color: #B00;
+}
+.alert-warnning {
+	background: url(./images/icon_app.png) no-repeat 20px -270px;
+}

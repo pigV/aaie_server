@@ -1,0 +1,36 @@
+<%
+  for(var i=0;i<rows.length;i++){
+    var itemObj = rows[i];
+    
+%>
+ <tr >
+   <td>
+     <%= itemObj["opTime"]%>
+   </td>    
+   <td>
+     <%= itemObj["ruleId"]%>
+   </td>    
+  <td>
+     <%= itemObj["ruleName"]%>
+   </td>    
+     
+   <td>
+     <%= itemObj["checkType"]%>
+   </td>  
+   <td>
+       <%= itemObj["value1"]%>
+   </td> 
+   <td>
+     <%= itemObj["value2"]%>
+   </td>   
+   <td>
+     <%= itemObj["resultValue"]%>
+   </td>    
+   <td>
+     <%= itemObj["ifOk"]%>
+   </td> 
+   <td>
+     <%= itemObj["descText"]%>
+   </td>
+ </tr>
+<% } %>
