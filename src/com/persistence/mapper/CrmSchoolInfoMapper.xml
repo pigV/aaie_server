@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.persistence.mapper.CrmSchoolInfoMapper">
+<resultMap id="BaseResultMap" type="com.persistence.model.CrmSchoolInfo">
+  <id column="SCHOOL_ID" jdbcType="VARCHAR" property="schoolId" />
+  <result column="SCHOOL_NAME" jdbcType="VARCHAR" property="schoolName" />
+  <result column="SCHOOL_YEAR" jdbcType="VARCHAR" property="schoolYear" />
+  <result column="SCHOOL_COMMISSION_PROPORTION" jdbcType="VARCHAR" property="schoolCommissionProportion" />
+  <result column="SCHOOL_TUTION" jdbcType="VARCHAR" property="schoolTution" />
+  <result column="SCHOOL_STATE" jdbcType="VARCHAR" property="schoolState" />
+  <result column="SCHOOL_LOCATION" jdbcType="VARCHAR" property="schoolLocation" />
+  <result column="SCHOOL_KMS_TO_CITY" jdbcType="VARCHAR" property="schoolKmsToCity" />
+  <result column="SCHOOL_YEAR_LEVEL" jdbcType="VARCHAR" property="schoolYearLevel" />
+  <result column="SCHOOL_TYPE" jdbcType="VARCHAR" property="schoolType" />
+  <result column="SCHOOL_SEX_TYPE" jdbcType="VARCHAR" property="schoolSexType" />
+  <result column="SCHOOL_LANGUAGE" jdbcType="VARCHAR" property="schoolLanguage" />
+</resultMap>
+<sql id="Base_Column_List">
+  SCHOOL_ID, SCHOOL_NAME, SCHOOL_YEAR,SCHOOL_COMMISSION_PROPORTION,SCHOOL_TUTION,SCHOOL_STATE,SCHOOL_LOCATION,SCHOOL_KMS_TO_CITY,SCHOOL_YEAR_LEVEL,SCHOOL_TYPE,SCHOOL_SEX_TYPE,SCHOOL_LANGUAGE
+</sql>
+<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from aaie_sm_school_info
+  where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+</select>
+  <select id="queryAllCrmSchoolInfoListI" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aaie_sm_school_info where SCHOOL_TYPE = 'I' ORDER BY SCHOOL_NAME
+  </select>
+
+  <select id="queryAllCrmSchoolInfoListP" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aaie_sm_school_info where SCHOOL_TYPE = 'P' ORDER BY SCHOOL_NAME
+  </select>
+
+  <select id="queryAllCrmSchoolInfoList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aaie_sm_school_info
+  </select>
+
+  <select id="queryAllCrmSchoolInfoElicosList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aaie_sm_school_info where SCHOOL_TYPE = '1' order by SCHOOL_NAME DESC
+  </select>
+
+<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  delete from aaie_sm_school_info
+  where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+</delete>
+<insert id="insert" parameterType="com.persistence.model.CrmSchoolInfo">
+  insert into aaie_sm_school_info (SCHOOL_ID, SCHOOL_NAME, SCHOOL_YEAR,SCHOOL_COMMISSION_PROPORTION,SCHOOL_TUTION,SCHOOL_STATE,SCHOOL_LOCATION,SCHOOL_KMS_TO_CITY,SCHOOL_YEAR_LEVEL,SCHOOL_TYPE,SCHOOL_SEX_TYPE,SCHOOL_LANGUAGE
+  )
+  values (#{schoolId,jdbcType=VARCHAR}, #{schoolName,jdbcType=VARCHAR}, #{schoolYear,jdbcType=VARCHAR},#{schoolCommissionProportion,jdbcType=VARCHAR},#{schoolTution,jdbcType=VARCHAR},#{schoolState,jdbcType=VARCHAR},#{schoolLocation,jdbcType=VARCHAR},#{schoolKmsToCity,jdbcType=VARCHAR},#{schoolYearLevel,jdbcType=VARCHAR},#{schoolType,jdbcType=VARCHAR},#{schoolSexType,jdbcType=VARCHAR},#{schoolLanguage,jdbcType=VARCHAR}
+  )
+</insert>
+
+<update id="updateByPrimaryKeySelective" parameterType="com.persistence.model.CrmSchoolInfo">
+  update aaie_sm_school_info
+  <set>
+    <if test="schoolName != null">
+      SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolYear != null">
+      SCHOOL_YEAR = #{schoolYear,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolCommissionProportion != null">
+      SCHOOL_COMMISSION_PROPORTION = #{schoolCommissionProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolTution != null">
+      SCHOOL_TUTION = #{schoolTution,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolState != null">
+      SCHOOL_STATE = #{schoolState,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolLocation != null">
+      SCHOOL_LOCATION = #{schoolLocation,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolKmsToCity != null">
+      SCHOOL_KMS_TO_CITY = #{schoolKmsToCity,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolYearLevel != null">
+      SCHOOL_YEAR_LEVEL = #{schoolYearLevel,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolType != null">
+      SCHOOL_TYPE = #{schoolType,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolSexType != null">
+      SCHOOL_SEX_TYPE = #{schoolSexType,jdbcType=VARCHAR},
+    </if>
+    <if test="schoolLanguage != null">
+      SCHOOL_LANGUAGE = #{schoolLanguage,jdbcType=VARCHAR}
+    </if>
+  </set>
+  where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+</update>
+<update id="updateByPrimaryKey" parameterType="com.persistence.model.CrmSchoolInfo">
+  update aaie_sm_school_info
+  set SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+  SCHOOL_YEAR = #{schoolCommissionProportion,jdbcType=VARCHAR}
+  where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+</update>
+
+  <select id="findNumberByConditionCount" resultType="java.lang.Integer" parameterType="map">
+    select count(0) as c from aaie_sm_school_info where 1=1
+    <if test="schoolState != null and schoolState != ''">
+      AND SCHOOL_STATE like "%"#{schoolState}"%"
+    </if>
+    <if test="schoolName != null and schoolName != ''">
+      AND SCHOOL_NAME like "%"#{schoolName}"%"
+    </if>
+    <if test="schoolLocation != null and schoolLocation != ''">
+      AND SCHOOL_LOCATION = #{schoolLocation}
+    </if>
+    <if test="schoolKmsToCity != null and schoolKmsToCity != ''">
+      AND SCHOOL_KMS_TO_CITY = #{schoolKmsToCity}
+    </if>
+    <if test="schoolYearLevel != null and schoolYearLevel != ''">
+      AND SCHOOL_YEAR_LEVEL "%"#{schoolYearLevel}"%"
+    </if>
+  </select>
+
+  <select id="findPageBreakByCondition" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from aaie_sm_school_info where 1=1
+    <if test="schoolName != null and schoolName != ''">
+      AND SCHOOL_NAME like "%"#{schoolName}"%"
+    </if>
+    <if test="schoolState != null and schoolState != ''">
+      AND SCHOOL_STATE like "%"#{schoolState}"%"
+    </if>
+    <if test="schoolLocation != null and schoolLocation != ''">
+      AND SCHOOL_LOCATION = #{schoolLocation}
+    </if>
+    <if test="schoolKmsToCity != null and schoolKmsToCity != ''">
+      AND SCHOOL_KMS_TO_CITY = #{schoolKmsToCity}
+    </if>
+    <if test="schoolType != null and schoolType != '' and schoolType != 'all'">
+      AND SCHOOL_TYPE = #{schoolType}
+    </if>
+    ORDER BY SCHOOL_NAME
+  </select>
+
+</mapper>
