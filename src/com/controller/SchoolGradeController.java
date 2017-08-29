@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.persistence.model.CrmSchoolInfo;
 import com.persistence.service.SchoolGradeService;
+import com.test.User;
 import com.utils.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,12 +36,14 @@ public class SchoolGradeController {
     @POST
     @Path("/addSchool")
     @Produces("application/json;charset=UTF-8")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Map addSchool(JSONObject jsonBody) {
+    @Consumes("application/x-www-form-urlencoded")
+    public Map addSchool(@BeanParam User user) {
         Map mapResult = new HashMap();
-        CrmSchoolInfo crmSchoolInfo = JSON.parseObject(jsonBody.toJSONString(),CrmSchoolInfo.class);
-        crmSchoolInfo.setSchoolId(RandomString.randomString(8));
-        int flag = schoolGradeService.addSchool(crmSchoolInfo);
+        //CrmSchoolInfo crmSchoolInfo = JSON.parseObject(jsonBody.toJSONString(),CrmSchoolInfo.class);
+        System.out.println(user.getName() + "," + user.getUserName() + "," + user.getEmail() + "," + user.getTelephone());
+        //CrmSchoolInfo crmSchoolInfo = new CrmSchoolInfo();
+        //int flag = schoolGradeService.addSchool(crmSchoolInfo);
+        int flag = 0;
         if(flag == 0){
             mapResult.put("status", "1");
             mapResult.put("message","success");

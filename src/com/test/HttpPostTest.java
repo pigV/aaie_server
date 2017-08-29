@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -73,11 +74,10 @@ public class HttpPostTest
         HttpPost httpPost = new HttpPost(urlStr);
         //设置Post参数
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-/*        params.add(new BasicNameValuePair("current_page", "1"));
-        params.add(new BasicNameValuePair("pageSize", "20"));
-        params.add(new BasicNameValuePair("opTime", "20170824"));
-        params.add(new BasicNameValuePair("opType", "day"));
-        params.add(new BasicNameValuePair("ifOk", "OK"));*/
+        params.add(new BasicNameValuePair("userName", "userName"));
+        params.add(new BasicNameValuePair("name", "name"));
+        params.add(new BasicNameValuePair("telephone", "telephone"));
+        params.add(new BasicNameValuePair("email", "email"));
 /*        params.add(new BasicNameValuePair("oaType", "4"));
         params.add(new BasicNameValuePair("taskId", "39"));
         params.add(new BasicNameValuePair("filterExpr", "taskId like '%%'"));
@@ -173,7 +173,7 @@ public class HttpPostTest
     public static void main(String[] args) throws IOException {
 //        String url = "http://10.68.81.166:8091/biOpenApi/rest/ericsson/realTimeMarketStream/1/null/" + URLEncoder.encode("imsi != ''", "UTF-8");
         String url = "http://localhost:8080/aaie_server/rest/SchoolGradeController/addSchool";
-        new HttpPostTest().testPostJson(url);
+        new HttpPostTest().testPost(url);
 
 /*        String url = "http://10.68.81.150:19527/ocsp/v1/api/events";
         new HttpPostTest().testPost(url);*/
