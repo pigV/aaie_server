@@ -1,0 +1,114 @@
+
+.alert-tip-box {
+	width: 100%;
+	height: auto;
+}
+.alert-tip-box dl{
+   overflow: hidden;
+}
+.alert-tip-box dl dt{
+	float: left;
+	width: 80px;
+	height: 64px;
+	
+}
+.alert-tip-box dl dd{
+	margin:  0 0 0 80px;
+	padding: 10px 0 0;
+	line-height: 24px;
+	line-height: 36px;
+	text-align: left;
+	font-size: 26px;
+	word-wrap: break-word; 
+	word-break: break-all; 
+}
+
+
+
+.alert-tip-box.alert-warnning{
+	color:  #333;
+}
+.alert-tip-box.alert-warnning dt{
+    background: url(../images/icon_app.png) no-repeat 20px -270px;
+}
+
+.alert-tip-box.alert-success{
+	color: #78a300;
+}
+.alert-tip-box.alert-success dt{
+    background: url(../images/icon_app.png) no-repeat 20px 15px;
+}
+
+.alert-tip-box.alert-failed{
+	color: #f00;
+}
+.alert-tip-box.alert-failed dt{
+    background: url(../images/icon_app.png) no-repeat 20px -270px;
+}
+
+.alert-tip-box.alert-info{
+	color: #333;
+}
+.alert-tip-box.alert-info dt{
+    background: url(../images/icon_app.png) no-repeat -236px 15px;
+}
+
+
+/* 弹出弱提示  */
+.weakTipBox {
+	position: absolute;
+	display: none;
+	height: 70px;
+	z-index: 99999;
+	text-align: center;
+	font-size: 20px;
+	font-family: 'tahoma';
+	color: #fff; 
+	background: #0880da;
+	border-radius: 5px;
+	padding:0px 20px;
+}
+.weakTipBox > div{
+	float:left;
+	height: 70px;
+}
+.weakTipText {
+	display:table;
+	min-width: 140px;
+	max-width: 400px;
+	text-align:center; 
+}
+.weakTipText div{
+	float: none;
+	width:100%;
+	display: table-cell;
+    vertical-align:middle;
+}
+
+/* 正在加载中... */
+
+.loading-box{
+	position: relative;
+}
+
+.loading-cover{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top:0px;
+	left:0px;
+	background-color: #333;
+	opacity: 0.08;
+	filter:alpha(opacity=8);
+}
+.loading-text{
+	position: fixed;
+	left:50%;
+	top:50%;
+	margin:-15px 0px 0px -75px;
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	background: transparent url(../images/loading.gif) no-repeat 0px center;
+	padding-left: 40px;
+}

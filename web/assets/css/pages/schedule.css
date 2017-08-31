@@ -1,0 +1,83 @@
+﻿/* 运行状态 */
+
+.task-state {
+    padding: 3px 25px;
+    background: #f00;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.schedule-btn-box ol {
+    overflow: hidden;
+    background: #fff;
+    padding: 10px 0px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.schedule-btn-box ol li {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    padding: 0px 50px;
+    height: 34px;
+}
+
+.schedule-btn {
+    min-width: 75px;
+    height: 34px;
+    line-height: 34px;
+    background: #3c8dbc;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+/* 画布接口 */
+
+.svg-box {
+    overflow-x: hidden;
+    border: 1px solid #d1d1d1;
+    border-top: none;
+    font-family: 'Helvetica Neue', Helvetica;
+    background: #fff;
+    line-height: 16px;
+}
+
+.node rect,
+.node circle,
+.node ellipse {
+    stroke: #333;
+    fill: #fff;
+    stroke-width: 1px;
+}
+
+.edgePath path {
+    stroke: #333;
+    fill: #333;
+    stroke-width: 1.5px;
+}
+
+
+g.success>rect {
+    fill: #dff0d8;
+}
+g.danger>rect {
+    fill: #a94442;
+}
+
+.tip-success,
+.tip-warning {
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.tip-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+}

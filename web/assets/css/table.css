@@ -1,0 +1,100 @@
+.comTable ,.attrTable{
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+}
+.comTable thead >tr >th{
+	height: 30px;
+    overflow: hidden;
+    text-align: center;
+    color: #5c5c5c;
+    border-right: 1px solid #fff;
+    background-color: #deedf9;
+    font-size: 14px;
+    padding: 5px 0px;
+    font-weight: bold;
+}
+
+.comTable tbody >tr >td{
+	  height:42px;
+	  overflow: hidden;
+	  text-align: center;
+	  color: #696969;
+	  word-wrap: break-word;
+	  word-break: break-all;
+}
+
+.comTable tbody >tr:nth-child(even) >td{
+    background-color: #f3f3f3;
+}
+.comTable thead >tr >th:last-child , .comTable tbody >tr >td:last-child{
+    border-right: none;
+}
+
+.comTable.table-border tr >td{
+    border:1px solid #ddd;
+}
+
+/* 行获得焦点 */
+.comTable tbody > tr.active td{
+    background: #feffd0;
+    color:#ababab;
+}
+
+.table-box.table-scoll-box , .table-box.table-long-scoll-box{
+  overflow-x:auto;
+  padding-bottom: 50px;
+}
+.table-box.table-scoll-box .comTable{
+   width: 200%;
+}
+.table-box.table-scoll-box .comTable td ,
+.table-box.table-scoll-box .comTable th{
+    padding:5px;
+}
+
+.table-box.table-long-scoll-box .comTable{
+    width: 500%;
+}
+.comInnerTable{
+    width: 100%;
+}
+
+ .attrTable{
+  border: 1px solid #ddd;
+ }
+
+.attrTable thead >tr >th{
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    text-align: center;
+    color: #5c5c5c;
+    background-color: #deedf9;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+.attrTable tbody >tr >td{
+    height:32px;
+    overflow: hidden;
+    text-align: center;
+    color: #696969;
+    word-wrap: break-word;
+    word-break: break-all;
+    border: 1px solid #ddd;
+}
+
+
+
+/* 查询 */
+.product-form-table-box{
+    background: #fff;
+    padding: 10px 10px;
+}
+.form-table{
+    width: 100%;
+}
+.form-table tr td{
+    height: 50px;
+}

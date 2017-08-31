@@ -1,0 +1,43 @@
+﻿<%
+  for(var i=0;i<rows.length;i++){
+    var itemObj = rows[i];
+    
+%>
+ <tr >
+   <td>
+     <%= itemObj["ruleId"]%>
+   </td>    
+   <td>
+     <%= itemObj["ruleType"]%>
+   </td>    
+  <td>
+     <%= itemObj["ruleSubject"]%>
+   </td>    
+     
+   <td>
+     <%= itemObj["ruleName"]%>
+   </td>  
+   <td>
+       <%= itemObj["relateInterface"]%>
+   </td> 
+   <td>
+     <%= itemObj["ruleDesc"]%>
+   </td>   
+   <td>
+     <%= itemObj["scoreType"]%>
+   </td>    
+   <td>
+     <%= itemObj["calcProcess"]%>
+   </td> 
+   <td>
+     <%= itemObj["calcScript"]%>
+   </td>
+   <td>
+     <%= itemObj["remark"]%>
+   </td>
+   <td>
+     <%= itemObj["serviceProvider"]%>
+   </td>
+  
+ </tr>
+<% } %>
