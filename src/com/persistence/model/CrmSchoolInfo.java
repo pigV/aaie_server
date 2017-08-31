@@ -1,44 +1,46 @@
 package com.persistence.model;
 
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "crmSchoolInfo")
 public class CrmSchoolInfo {
 
+    @FormParam("schoolId")
     private String schoolId;
 
+    @FormParam("schoolName")
     private String schoolName;
 
+    @FormParam("schoolYear")
     private String schoolYear;
 
+    @FormParam("schoolCommissionProportion")
     private String schoolCommissionProportion;
 
+    @FormParam("schoolTution")
     private String schoolTution;
 
+    @FormParam("schoolState")
     private String schoolState;
 
+    @FormParam("schoolLocation")
     private String schoolLocation;
 
+    @FormParam("schoolYearLevel")
     private String schoolYearLevel;
 
+    @FormParam("schoolType")
     private String schoolType;
 
+    @FormParam("schoolSexType")
     private String schoolSexType;
 
-    public String getSchoolLanguage() {
-        return schoolLanguage;
-    }
-
-    public void setSchoolLanguage(String schoolLanguage) {
-        this.schoolLanguage = schoolLanguage;
-    }
-
-    public String getSchoolSexType() {
-        return schoolSexType;
-    }
-
-    public void setSchoolSexType(String schoolSexType) {
-        this.schoolSexType = schoolSexType;
-    }
-
+    @FormParam("schoolLanguage")
     private String schoolLanguage;
+
+    @FormParam("schoolKmsToCity")
+    private String schoolKmsToCity;
 
     public String getSchoolType() {
         return schoolType;
@@ -71,8 +73,6 @@ public class CrmSchoolInfo {
     public void setSchoolKmsToCity(String schoolKmsToCity) {
         this.schoolKmsToCity = schoolKmsToCity;
     }
-
-    private String schoolKmsToCity;
 
     public String getSchoolId() {
         return schoolId;
@@ -120,5 +120,22 @@ public class CrmSchoolInfo {
 
     public void setSchoolState(String schoolState) {
         this.schoolState = schoolState;
+    }
+
+
+    public String getSchoolLanguage() {
+        return schoolLanguage;
+    }
+
+    public void setSchoolLanguage(String schoolLanguage) {
+        this.schoolLanguage = schoolLanguage;
+    }
+
+    public String getSchoolSexType() {
+        return schoolSexType;
+    }
+
+    public void setSchoolSexType(String schoolSexType) {
+        this.schoolSexType = schoolSexType;
     }
 }

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.persistence.mapper.CrmUserInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.persistence.model.CrmUserInfo">
+		<id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="USER_PARENT_ID" property="userParentId"
+			jdbcType="VARCHAR" />
+		<result column="USER_PROVINCE" property="userProvince"
+			jdbcType="VARCHAR" />
+		<result column="USER_CITY" property="userCity"
+			jdbcType="VARCHAR" />
+		<result column="USER_AGENT" property="userAgent"
+			jdbcType="VARCHAR" />
+		<result column="USER_NAME" property="userName"
+			jdbcType="VARCHAR" />
+		<result column="USER_ACCOUNT" property="userAccount"
+			jdbcType="VARCHAR" />
+		<result column="USER_PASSWORD" property="userPassword"
+			jdbcType="VARCHAR" />
+		<result column="USER_POST" property="userPost"
+			jdbcType="VARCHAR" />
+		<result column="USER_PHONE" property="userPhone"
+			jdbcType="VARCHAR" />
+		<result column="USER_OFFICE_PHONE" property="userOfficePhone"
+			jdbcType="VARCHAR" />
+		<result column="USER_EMAIL" property="userEmail"
+			jdbcType="VARCHAR" />
+		<result column="USER_ADDRESS" property="userAddress"
+			jdbcType="VARCHAR" />
+		<result column="USER_QQ" property="userQq" jdbcType="VARCHAR" />
+		<result column="USER_WECHAT" property="userWechat"
+			jdbcType="VARCHAR" />
+		<result column="USER_SKYPE" property="userSkype"
+			jdbcType="VARCHAR" />
+		<result column="USER_IS_MGR" property="userIsMgr"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		USER_ID, USER_PARENT_ID,USER_PROVINCE,
+		USER_CITY,USER_AGENT,USER_NAME, USER_ACCOUNT, USER_PASSWORD,
+		USER_POST, USER_PHONE, USER_OFFICE_PHONE, USER_EMAIL,
+		USER_ADDRESS, USER_QQ, USER_WECHAT, USER_SKYPE, USER_IS_MGR
+	</sql>
+
+	<insert id="insert"
+		parameterType="com.persistence.model.CrmUserInfo"
+		useGeneratedKeys="true" keyProperty="userId">
+		insert into aaie_crm_user_info (USER_ID,
+		USER_PARENT_ID,USER_PROVINCE,USER_CITY, USER_AGENT, USER_NAME,
+		USER_ACCOUNT, USER_PASSWORD, USER_POST, USER_PHONE,
+		USER_OFFICE_PHONE, USER_EMAIL, USER_ADDRESS, USER_QQ,
+		USER_WECHAT, USER_SKYPE, USER_IS_MGR) values
+		(#{userId,jdbcType=VARCHAR},
+		#{userParentId,jdbcType=VARCHAR},#{userProvince,jdbcType=VARCHAR},#{userCity,jdbcType=VARCHAR},
+		#{userAgent,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},
+		#{userAccount,jdbcType=VARCHAR},
+		#{userPassword,jdbcType=VARCHAR}, #{userPost,jdbcType=VARCHAR},
+		#{userPhone,jdbcType=VARCHAR},
+		#{userOfficePhone,jdbcType=VARCHAR},
+		#{userEmail,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR},
+		#{userQq,jdbcType=VARCHAR}, #{userWechat,jdbcType=VARCHAR},
+		#{userSkype,jdbcType=VARCHAR}, #{userIsMgr,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="findPageBreakByCondition" resultMap="BaseResultMap"
+		parameterType="map">
+		SELECT
+		<include refid="Base_Column_List" />
+		from aaie_crm_user_info where USER_ID = #{userId}
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="findNumberByCondition" resultType="java.lang.Integer"
+		parameterType="map">
+		select count(0) as c from aaie_crm_user_info where
+		USER_PARENT_ID = #{userAccount}
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="queryCountIsAdminCount" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as c from aaie_crm_user_info where 1=1
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="queryUserInfoListIsAdmin" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+		<include refid="Base_Column_List" />
+		from aaie_crm_user_info where 1 = 1
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="queryCountIsManageCount" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as c from aaie_crm_user_info where USER_PARENT_ID = #{userAccount}
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="queryUserInfoListIsManage" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+		<include refid="Base_Column_List" />
+		from aaie_crm_user_info where USER_PARENT_ID = #{userAccount}
+		<if test="userName != null">
+			AND USER_NAME like "%"#{userName}"%"
+		</if>
+	</select>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from aaie_crm_user_info where USER_ID = #{userId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findByUsername" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from aaie_crm_user_info where USER_ACCOUNT = #{userAccount}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from aaie_crm_user_info where USER_ID =
+		#{userId,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insertSelective"
+		parameterType="com.persistence.model.CrmUserInfo">
+		insert into aaie_crm_user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">USER_ID,</if>
+			<if test="userParentId != null">USER_PARENT_ID,</if>
+			<if test="userAgent != null">USER_AGENT,</if>
+			<if test="userAccount != null">USER_ACCOUNT,</if>
+			<if test="userPassword != null">USER_PASSWORD,</if>
+			<if test="userPost != null">USER_POST,</if>
+			<if test="userPhone != null">USER_PHONE,</if>
+			<if test="userOfficePhone != null">USER_OFFICE_PHONE,</if>
+			<if test="userEmail != null">USER_EMAIL,</if>
+			<if test="userAddress != null">USER_ADDRESS,</if>
+			<if test="userQq != null">USER_QQ,</if>
+			<if test="userWechat != null">USER_WECHAT,</if>
+			<if test="userSkype != null">USER_SKYPE,</if>
+			<if test="userIsMgr != null">USER_IS_MGR,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">#{userId,jdbcType=VARCHAR},</if>
+			<if test="userParentId != null">
+				#{userParentId,jdbcType=VARCHAR},
+			</if>
+			<if test="userAgent != null">
+				#{userAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="userAccount != null">
+				#{userAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="userPassword != null">
+				#{userPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="userPost != null">
+				#{userPost,jdbcType=VARCHAR},
+			</if>
+			<if test="userPhone != null">
+				#{userPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userOfficePhone != null">
+				#{userOfficePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userEmail != null">
+				#{userEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="userAddress != null">
+				#{userAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="userQq != null">#{userQq,jdbcType=VARCHAR},</if>
+			<if test="userWechat != null">
+				#{userWechat,jdbcType=VARCHAR},
+			</if>
+			<if test="userSkype != null">
+				#{userSkype,jdbcType=VARCHAR},
+			</if>
+			<if test="userIsMgr != null">
+				#{userIsMgr,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.persistence.model.CrmUserInfo">
+		update aaie_crm_user_info
+		<set>
+			<if test="userParentId != null">
+				USER_PARENT_ID = #{userParentId,jdbcType=VARCHAR},
+			</if>
+			<if test="userAgent != null">
+				USER_PROVINCE = #{userProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="userAgent != null">
+				USER_CITY = #{userCity,jdbcType=VARCHAR},
+			</if>
+			<if test="userAgent != null">
+				USER_NAME = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="userAgent != null">
+				USER_AGENT = #{userAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="userAccount != null">
+				USER_ACCOUNT = #{userAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="userPassword != null">
+				USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="userPost != null">
+				USER_POST = #{userPost,jdbcType=VARCHAR},
+			</if>
+			<if test="userPhone != null">
+				USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userOfficePhone != null">
+				USER_OFFICE_PHONE = #{userOfficePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="userEmail != null">
+				USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="userAddress != null">
+				USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="userQq != null">
+				USER_QQ = #{userQq,jdbcType=VARCHAR},
+			</if>
+			<if test="userWechat != null">
+				USER_WECHAT = #{userWechat,jdbcType=VARCHAR},
+			</if>
+			<if test="userSkype != null">
+				USER_SKYPE = #{userSkype,jdbcType=VARCHAR},
+			</if>
+			<if test="userIsMgr != null">
+				USER_IS_MGR = #{userIsMgr,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where USER_ID = #{userId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.persistence.model.CrmUserInfo">
+		update aaie_crm_user_info set USER_PARENT_ID =
+		#{userParentId,jdbcType=VARCHAR}, USER_AGENT =
+		#{userAgent,jdbcType=VARCHAR}, USER_ACCOUNT =
+		#{userAccount,jdbcType=VARCHAR}, USER_PASSWORD =
+		#{userPassword,jdbcType=VARCHAR}, USER_POST =
+		#{userPost,jdbcType=VARCHAR}, USER_PHONE =
+		#{userPhone,jdbcType=VARCHAR}, USER_OFFICE_PHONE =
+		#{userOfficePhone,jdbcType=VARCHAR}, USER_EMAIL =
+		#{userEmail,jdbcType=VARCHAR}, USER_ADDRESS =
+		#{userAddress,jdbcType=VARCHAR}, USER_QQ =
+		#{userQq,jdbcType=VARCHAR}, USER_WECHAT =
+		#{userWechat,jdbcType=VARCHAR}, USER_SKYPE =
+		#{userSkype,jdbcType=VARCHAR}, USER_IS_MGR =
+		#{userIsMgr,jdbcType=VARCHAR} where USER_ID =
+		#{userId,jdbcType=VARCHAR}
+	</update>
+</mapper>

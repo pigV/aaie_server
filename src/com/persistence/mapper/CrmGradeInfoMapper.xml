@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.persistence.mapper.CrmGradeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.persistence.model.CrmGradeInfo" >
+    <id column="GRADE_ID" property="gradeId" jdbcType="VARCHAR" />
+    <result column="GRADE_NAME" property="gradeName" jdbcType="VARCHAR" />
+    <result column="IS_VACANCY" property="isVacancy" jdbcType="VARCHAR" />
+    <result column="GRADE_TUTION" property="gradeTution" jdbcType="VARCHAR" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="VARCHAR" />
+    <result column="SCHOOL_ID" property="schoolId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GRADE_ID, GRADE_NAME,IS_VACANCY,GRADE_TUTION,SCHOOL_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from aaie_sm_grade_info
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </select>
+  <select id="querySchoolGradeBySchoolId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+    A.GRADE_ID,A.GRADE_NAME,IS_VACANCY,A.GRADE_TUTION,
+    A.GRADE_TUTION * B.SCHOOL_COMMISSION_PROPORTION / 100 'TOTAL_FEE'
+    FROM
+    AAIE_SM_GRADE_INFO A,
+    AAIE_SM_SCHOOL_INFO B
+    WHERE A.SCHOOL_ID = B.SCHOOL_ID
+    AND A.SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+    ORDER BY SUBSTR(A.GRADE_NAME, 11) + 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from aaie_sm_grade_info
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteBySchoolId" parameterType="java.lang.String" >
+    delete from aaie_sm_grade_info
+    where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.persistence.model.CrmGradeInfo" >
+    insert into aaie_sm_grade_info (GRADE_ID, GRADE_NAME,IS_VACANCY,GRADE_TUTION,SCHOOL_ID
+      )
+    values (#{gradeId,jdbcType=VARCHAR}, #{gradeName,jdbcType=VARCHAR}, #{isVacancy,jdbcType=VARCHAR},#{gradeTution,jdbcType=VARCHAR},#{schoolId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.persistence.model.CrmGradeInfo" >
+    insert into aaie_sm_grade_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        GRADE_ID,
+      </if>
+      <if test="gradeName != null" >
+        GRADE_NAME,
+      </if>
+      <if test="isVacancy != null" >
+        IS_VACANCY,
+      </if>
+      <if test="gradeTution != null" >
+        GRADE_TUTION,
+      </if>
+      <if test="schoolId != null" >
+        SCHOOL_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isVacancy != null" >
+        #{isVacancy,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeTution != null" >
+        #{gradeTution,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.persistence.model.CrmGradeInfo" >
+    update aaie_sm_grade_info
+    <set >
+      <if test="gradeName != null" >
+        GRADE_NAME = #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isVacancy != null" >
+        IS_VACANCY = #{isVacancy,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeTution != null" >
+        GRADE_TUTION = #{gradeTution,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.persistence.model.CrmGradeInfo" >
+    update aaie_sm_grade_info
+    set GRADE_NAME = #{gradeName,jdbcType=VARCHAR},
+      SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
