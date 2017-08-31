@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Administrator on 2017/8/31 0031.
  */
-@Service("schoolGradeService")
+@Service("userService")
 public class UserService {
 
     @Autowired
@@ -17,5 +17,10 @@ public class UserService {
     public int addUser(CrmUserInfo crmUserInfo){
         int flag = crmUserInfoMapper.insertSelective(crmUserInfo);
         return flag;
+    }
+
+    public CrmUserInfo queryUserByAccount(String strUserAccount){
+        CrmUserInfo crmUserInfo = crmUserInfoMapper.findByUserAccount(strUserAccount);
+        return crmUserInfo;
     }
 }

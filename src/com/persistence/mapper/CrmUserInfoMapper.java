@@ -27,7 +27,7 @@ public interface CrmUserInfoMapper
 
 	Integer findNumberByCondition(UserConditionVO vo);
 	
-	CrmUserInfo findByUsername(String userAccount);
+	CrmUserInfo findByUserAccount(String userAccount);
 
 	int queryCountIsAdminCount();
 
