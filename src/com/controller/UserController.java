@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/8/31 0031.
  */
-@Path("/UserController")
+@Path("/userController")
 @Provider
 @Component
 public class UserController {
@@ -55,7 +55,24 @@ public class UserController {
     @Path("/addUser")
     @Produces("application/json;charset=UTF-8")
     @Consumes("application/x-www-form-urlencoded")
-    public Map addSchool(@BeanParam CrmUserInfo crmUserInfo) {
+    public Map addUser(@BeanParam CrmUserInfo crmUserInfo) {
+        Map mapResult = new HashMap();
+        int flag = userService.addUser(crmUserInfo);
+        if(flag == 0){
+            mapResult.put("status", "1");
+            mapResult.put("message","success");
+        }else{
+            mapResult.put("status","0");
+        }
+
+        return mapResult;
+    }
+
+    @POST
+    @Path("/deleteUser")
+    @Produces("application/json;charset=UTF-8")
+    @Consumes("application/x-www-form-urlencoded")
+    public Map deleteUser(@BeanParam CrmUserInfo crmUserInfo) {
         Map mapResult = new HashMap();
         int flag = userService.addUser(crmUserInfo);
         if(flag == 0){
